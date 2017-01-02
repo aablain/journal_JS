@@ -13,7 +13,6 @@ Entry.prototype.wordCount = function() {
 
 };
 
-
 Entry.prototype.vowels = function() {
   vowel_count = 0;
   this.body.toLowerCase().split("").forEach(function(letter) {
@@ -23,6 +22,18 @@ Entry.prototype.vowels = function() {
   });
   return vowel_count;
 };
+
+Entry.prototype.consonants = function() {
+  consonants_count = 0;
+  this.body.toLowerCase().split("").forEach(function(letter) {
+    if ((/[aeiou \s]/).test(letter)) {}
+    else {
+    consonants_count++;
+    }
+  });
+  return consonants_count;
+};
+
 
 
 exports.wordCountModule = Entry;
@@ -37,14 +48,14 @@ $(document).ready(function() {
     var body = $('#body').val();
     var simpleEntry = new Entry(title, body);
     var output = simpleEntry.wordCount();
-
     var vowelOutput = simpleEntry.vowels();
+    var conOutput = simpleEntry.consonants();
 
     $('#solution').append("<h3>"  + title + "</h3>");
     $('#solution').append("<h4>"  + body + "</h4><hr>");
     $('#solution').append("<li>"  + output + ' words in body' + "</li>");
-
     $('#solution').append("<li>"  + vowelOutput + ' vowels in body' + "</li>");
+    $('#solution').append("<li>"  + conOutput + ' consonants in body' + "</li>");
 
   });
 });

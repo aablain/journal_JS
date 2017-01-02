@@ -7,14 +7,14 @@ $(document).ready(function() {
     var body = $('#body').val();
     var simpleEntry = new Entry(title, body);
     var output = simpleEntry.wordCount();
-
     var vowelOutput = simpleEntry.vowels();
+    var conOutput = simpleEntry.consonants();
 
     $('#solution').append("<h3>"  + title + "</h3>");
     $('#solution').append("<h4>"  + body + "</h4><hr>");
     $('#solution').append("<li>"  + output + ' words in body' + "</li>");
-
     $('#solution').append("<li>"  + vowelOutput + ' vowels in body' + "</li>");
+    $('#solution').append("<li>"  + conOutput + ' consonants in body' + "</li>");
 
   });
 });

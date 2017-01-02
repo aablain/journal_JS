@@ -12,7 +12,6 @@ Entry.prototype.wordCount = function() {
 
 };
 
-
 Entry.prototype.vowels = function() {
   vowel_count = 0;
   this.body.toLowerCase().split("").forEach(function(letter) {
@@ -22,6 +21,18 @@ Entry.prototype.vowels = function() {
   });
   return vowel_count;
 };
+
+Entry.prototype.consonants = function() {
+  consonants_count = 0;
+  this.body.toLowerCase().split("").forEach(function(letter) {
+    if ((/[aeiou \s]/).test(letter)) {}
+    else {
+    consonants_count++;
+    }
+  });
+  return consonants_count;
+};
+
 
 
 exports.wordCountModule = Entry;
