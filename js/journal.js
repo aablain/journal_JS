@@ -1,16 +1,27 @@
-function Entry() {
+function Entry(title, body) {
   this.title = title;
   this.body = body;
 }
 
-Entry.prototype.wordCount = function(body) {
-  var output = [];
-  var counter = 0;
-  bodyArray = body.split(" ");
-  finalCount = bodyArray.length
+Entry.prototype.wordCount = function() {
+  bodySentence = this.body;
+  bodyArray = bodySentence.split(" ");
+  finalCount = bodyArray.length;
 
   return finalCount;
 
 };
+
+
+Entry.prototype.vowels = function() {
+  vowel_count = 0;
+  this.body.toLowerCase().split("").forEach(function(letter) {
+    if ((/[aeiou]/).test(letter)) {
+      vowel_count++;
+    }
+  });
+  return vowel_count;
+};
+
 
 exports.wordCountModule = Entry;

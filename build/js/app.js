@@ -1,18 +1,29 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-function Entry() {
+function Entry(title, body) {
   this.title = title;
   this.body = body;
 }
 
-Entry.prototype.wordCount = function(body) {
-  var output = [];
-  var counter = 0;
-  bodyArray = body.split(" ");
-  finalCount = bodyArray.length
+Entry.prototype.wordCount = function() {
+  bodySentence = this.body;
+  bodyArray = bodySentence.split(" ");
+  finalCount = bodyArray.length;
 
   return finalCount;
 
 };
+
+
+Entry.prototype.vowels = function() {
+  vowel_count = 0;
+  this.body.toLowerCase().split("").forEach(function(letter) {
+    if ((/[aeiou]/).test(letter)) {
+      vowel_count++;
+    }
+  });
+  return vowel_count;
+};
+
 
 exports.wordCountModule = Entry;
 
@@ -24,14 +35,17 @@ $(document).ready(function() {
     event.preventDefault();
     var title = $('#title').val();
     var body = $('#body').val();
-    var simpleEntry = new Entry("test");
-    var output = simpleEntry.wordCount(body);
-    // output.forEach(function(element){
-    
+    var simpleEntry = new Entry(title, body);
+    var output = simpleEntry.wordCount();
+
+    var vowelOutput = simpleEntry.vowels();
+
     $('#solution').append("<h3>"  + title + "</h3>");
     $('#solution').append("<h4>"  + body + "</h4><hr>");
     $('#solution').append("<li>"  + output + ' words in body' + "</li>");
-    // });
+
+    $('#solution').append("<li>"  + vowelOutput + ' vowels in body' + "</li>");
+
   });
 });
 
