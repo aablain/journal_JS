@@ -3,10 +3,11 @@ var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
+var utilities = require('gulp-util');
 var del = require('del');
 var jshint = require('gulp-jshint');
 
-var buildProduction = utilities.env.production;
+var buildProduction = utilities.env.production; // talks to utilities
 
 gulp.task('concatInterface', function() {
   return gulp.src(['./js/*-interface.js'])
@@ -21,10 +22,10 @@ gulp.task('jsBrowserify', ['concatInterface'], function(){
   .pipe(gulp.dest('./build/js'));
 });
 
-gulp.task("minifyScripts", ['jsBrowserify'], function(){
+gulp.task("minifyScripts", ["jsBrowserify"], function(){
   return gulp.src("./build/js/app.js")
-  .pipe(uglify())
-  .pipe(gulp.dest("./build/js"));
+    .pipe(uglify())
+    .pipe(gulp.dest("./build/js"));
 });
 
 gulp.task("build", function(){
@@ -41,6 +42,6 @@ gulp.task("clean", function(){
 
 gulp.task('jshint', function(){
   return gulp.src(['js/*.js'])
-  .pipe(jshint())
-  .pipe(jshint.reporter('defualt'));
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'));
 });
