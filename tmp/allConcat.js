@@ -6,9 +6,12 @@ $(document).ready(function() {
     var title = $('#title').val();
     var body = $('#body').val();
     var simpleEntry = new Entry("test");
-    var output = simpleEntry.wordCount(result);
-    output.forEach(function(element){
-      $('#solution').append("<li>" + element + "</li>");
-    });
+    var output = simpleEntry.wordCount(body);
+    // output.forEach(function(element){
+    
+    $('#solution').append("<h3>"  + title + "</h3>");
+    $('#solution').append("<h4>"  + body + "</h4><hr>");
+    $('#solution').append("<li>"  + output + ' words in body' + "</li>");
+    // });
   });
 });

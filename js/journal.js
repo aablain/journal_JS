@@ -3,20 +3,14 @@ function Entry() {
   this.body = body;
 }
 
-Entry.prototype.wordCount = function(result) {
+Entry.prototype.wordCount = function(body) {
   var output = [];
-  for (var i = 1; i <= result; i++) {
-    if (i % 15 === 0) {
-      output.push("ping-pong");
-    } else if (i % 3 === 0) {
-      output.push("ping");
-    } else if (i % 5 === 0) {
-      output.push("pong");
-    } else  {
-      output.push(i);
-    }
-  }
-  return output;
+  var counter = 0;
+  bodyArray = body.split(" ");
+  finalCount = bodyArray.length
+
+  return finalCount;
+
 };
 
 exports.wordCountModule = Entry;

@@ -1,1 +1,38 @@
-!function n(r,o,t){function u(i,f){if(!o[i]){if(!r[i]){var a="function"==typeof require&&require;if(!f&&a)return a(i,!0);if(e)return e(i,!0);var l=new Error("Cannot find module '"+i+"'");throw l.code="MODULE_NOT_FOUND",l}var p=o[i]={exports:{}};r[i][0].call(p.exports,function(n){var o=r[i][1][n];return u(o?o:n)},p,p.exports,n,r,o,t)}return o[i].exports}for(var e="function"==typeof require&&require,i=0;i<t.length;i++)u(t[i]);return u}({1:[function(n,r,o){function t(){this.title=title,this.body=body}t.prototype.wordCount=function(n){for(var r=[],o=1;o<=n;o++)o%15===0?r.push("ping-pong"):o%3===0?r.push("ping"):o%5===0?r.push("pong"):r.push(o);return r},o.wordCountModule=t},{}],2:[function(n,r,o){var t=n("./../js/journal.js").wordCountModule;$(document).ready(function(){$("#journal-form").submit(function(n){n.preventDefault();var r=($("#title").val(),$("#body").val(),new t("test")),o=r.wordCount(result);o.forEach(function(n){$("#solution").append("<li>"+n+"</li>")})})})},{"./../js/journal.js":1}]},{},[2]);
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+function Entry() {
+  this.title = title;
+  this.body = body;
+}
+
+Entry.prototype.wordCount = function(body) {
+  var output = [];
+  var counter = 0;
+  bodyArray = body.split(" ");
+  finalCount = bodyArray.length
+
+  return finalCount;
+
+};
+
+exports.wordCountModule = Entry;
+
+},{}],2:[function(require,module,exports){
+var Entry = require('./../js/journal.js').wordCountModule;
+
+$(document).ready(function() {
+  $('#journal-form').submit(function(event) {
+    event.preventDefault();
+    var title = $('#title').val();
+    var body = $('#body').val();
+    var simpleEntry = new Entry("test");
+    var output = simpleEntry.wordCount(body);
+    // output.forEach(function(element){
+    
+    $('#solution').append("<h3>"  + title + "</h3>");
+    $('#solution').append("<h4>"  + body + "</h4><hr>");
+    $('#solution').append("<li>"  + output + ' words in body' + "</li>");
+    // });
+  });
+});
+
+},{"./../js/journal.js":1}]},{},[2]);
