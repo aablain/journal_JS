@@ -34,5 +34,4 @@ Entry.prototype.consonants = function() {
 };
 
 
-
 exports.wordCountModule = Entry;
